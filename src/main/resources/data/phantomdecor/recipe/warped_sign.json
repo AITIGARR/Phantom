@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:phantom_membrane",
+    "minecraft:warped_sign"
+  ],
+  "result": {
+    "id": "minecraft:warped_sign",
+    "count": 1,
+    "components": {
+      "minecraft:custom_data": {
+        "phantomdecor": "sign"
+      },
+      "minecraft:item_name": {
+        "text": "Невидимая табличка",
+        "color": "aqua",
+        "italic": false
+      }
+    }
+  }
+}
