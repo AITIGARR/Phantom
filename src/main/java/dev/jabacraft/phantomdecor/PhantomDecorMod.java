@@ -123,7 +123,7 @@ public final class PhantomDecorMod implements ModInitializer {
                 String kind = itemKind(held);
                 if (kind != null) {
                     BlockPos target = state.canBeReplaced() ? clicked : clicked.relative(hit.getDirection());
-                    pending.add(new PendingPlacement(level.dimension().location().toString(), target.asLong(), kind, ticks + 2400));
+                    pending.add(new PendingPlacement(level.dimension().identifier().toString(), target.asLong(), kind, ticks + 2400));
                 }
             }
             return InteractionResult.PASS;
@@ -142,7 +142,7 @@ public final class PhantomDecorMod implements ModInitializer {
                             ctx.getSource().sendFailure(Component.literal("Смотри на невидимую табличку или флаг."));
                             return 0;
                         }
-                        ServerLevel level = player.serverLevel();
+                        ServerLevel level = player.level();
                         BlockPos pos = bh.getBlockPos();
                         if (!restore(level, pos)) {
                             ctx.getSource().sendFailure(Component.literal("Здесь нет скрытого блока Phantom Decor."));
@@ -211,7 +211,7 @@ public final class PhantomDecorMod implements ModInitializer {
     }
 
     private void decorate(ServerLevel level, BlockPos pos, String kind) {
-        blocks.put(key(level, pos), new DecoratedBlock(level.dimension().location().toString(), pos.asLong(), kind));
+        blocks.put(key(level, pos), new DecoratedBlock(level.dimension().identifier().toString(), pos.asLong(), kind));
         ensureDisplay(level, pos, kind);
         // Send the fake block immediately; automatic refresh also catches players joining later.
         for (ServerPlayer player : level.players()) {
@@ -295,7 +295,7 @@ public final class PhantomDecorMod implements ModInitializer {
     }
 
     private static String entityTag(BlockPos pos) { return "pd_" + pos.asLong(); }
-    private static String key(ServerLevel level, BlockPos pos) { return level.dimension().location() + "|" + pos.asLong(); }
+    private static String key(ServerLevel level, BlockPos pos) { return level.dimension().identifier() + "|" + pos.asLong(); }
     private static boolean hasText(SignBlockEntity sign) { return hasText(sign.getFrontText()) || hasText(sign.getBackText()); }
     private static boolean hasText(SignText text) {
         for (int i = 0; i < 4; i++) if (!text.getMessage(i, false).getString().isBlank()) return true;
@@ -331,7 +331,7 @@ public final class PhantomDecorMod implements ModInitializer {
 
     private static ServerLevel dimension(MinecraftServer server, String name) {
         for (ServerLevel level : server.getAllLevels()) {
-            if (level.dimension().location().toString().equals(name)) return level;
+            if (level.dimension().identifier().toString().equals(name)) return level;
         }
         return null;
     }
