@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:phantom_membrane",
+    "minecraft:red_banner"
+  ],
+  "result": {
+    "id": "minecraft:red_banner",
+    "count": 1,
+    "components": {
+      "minecraft:custom_data": {
+        "phantomdecor": "banner"
+      },
+      "minecraft:item_name": {
+        "text": "Голографический флаг",
+        "color": "aqua",
+        "italic": false
+      }
+    }
+  }
+}

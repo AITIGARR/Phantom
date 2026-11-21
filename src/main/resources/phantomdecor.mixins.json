@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "dev.jabacraft.phantomdecor.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["TextDisplayAccess", "ItemDisplayAccess", "DisplayAccess"],
+  "injectors": {"defaultRequire": 1}
+}
