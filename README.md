@@ -1,9 +1,31 @@
-# Phantom Decor — Fabric 1.21.11
-Server-side Minecraft mod for phantom membrane decoration.
-- Phantom membrane + item frame = invisible frame
-- Phantom membrane + sign = floating text sign
-- Phantom membrane + banner = holographic banner
-- All vanilla clients; Fabric API required server-side.
-- Build: GitHub Actions / `gradle build` with Java 21.
-- The initial `phantomdecor-source.tar.xz` archive is automatically unpacked into tracked source files by GitHub Actions.
-- For invisible signs and banners, this mod uses vanilla display entities and client-side fake block updates, so appearance may differ from normal signs/banners.
+# Phantom Decor для Fabric 1.21.11
+
+Серверный мод для Minecraft Java 1.21.11. Клиентский Fabric не нужен. Требуется Java 21, Fabric Loader и Fabric API **только на сервере**. Ресурспак нужен для прозрачной поверхности таблички и значков предметов.
+
+## Установка
+
+1. Установите Fabric сервер 1.21.11 и Fabric API.
+2. Скопируйте `PhantomDecor-1.21.11.jar` в `mods/` сервера.
+3. Разместите `PhantomDecor-ResourcePack.zip` на HTTPS-хостинге с прямой ссылкой на ZIP. В `server.properties` задайте `resource-pack=<URL>`, `resource-pack-sha1=<SHA-1 ZIP>` и `require-resource-pack=true`. SHA-1 можно получить командой `sha1sum PhantomDecor-ResourcePack.zip`.
+4. Перезапустите сервер. Игроки входят ванильным клиентом 1.21.11 и принимают ресурспак.
+
+## Рецепты
+
+Все рецепты бесформенные и используют одну мембрану фантома:
+
+- Рамка + мембрана → невидимая рамка.
+- Светящаяся рамка + мембрана → невидимая светящаяся рамка.
+- Любая из 12 обычных деревянных табличек + мембрана → невидимая табличка (ванильная pale oak sign).
+- Флаг любого из 16 цветов + мембрана → фантомный флаг того же цвета.
+
+## Реализация и ограничения
+
+- Рамка остаётся ванильной `ItemFrame` / `GlowItemFrame`. Флаг невидимости выставляется **до** добавления сущности в мир. Предмет, вращение, извлечение и сохранение состояния работают через ваниль. При выпадении рамки мод возвращает предмет с меткой невидимости.
+- Табличка остаётся ванильным `SignBlock` с `SignBlockEntity`: четыре строки, две стороны, редактор, цвета текста и светящиеся чернила обслуживаются клиентом. Все результаты рецептов используют pale oak как выделенный ванильный носитель. Ресурспак делает его текстуру прозрачной. Поэтому **обычные pale oak таблички тоже будут без деревянной поверхности**, пока активен пак. Исходная порода дерева при крафте не сохраняется. Сломанная табличка выпадает как обычная pale oak табличка.
+- Флаг остаётся ванильным блоком. Ресурспак делает прозрачным общий базовый слой баннера, а стандартные узоры остаются видны. Это действует на **все** флаги, включая обычные: выборочно менять только скрафченный флаг ресурспак не может. Базовый цвет скрывается. Ванильный бесформенный рецепт не переносит узоры с ингредиента; наносите их после крафта. Сломанный флаг выпадает как обычный ванильный флаг.
+- Ресурспак не может определять установленную табличку или флаг по `custom_data` предмета. Новые идентификаторы блоков не используются. Display-сущностей, поддельных AIR-пакетов и циклической рассылки пакетов нет.
+- Значки рецептурных предметов используют `minecraft:item_model` и нуждаются в ресурспаке. Без пакета табличка выглядит обычной pale oak табличкой.
+
+## Сборка
+
+`./gradlew clean build` на Java 21. Результат Fabric Loom: `build/libs/phantomdecor-fabric-1.21.11-1.0.0.jar`. Исходники и определения ресурспака хранятся в репозитории.

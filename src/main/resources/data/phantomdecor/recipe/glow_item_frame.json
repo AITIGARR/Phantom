@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "category": "decorations",
   "ingredients": [
     "minecraft:phantom_membrane",
     "minecraft:glow_item_frame"
@@ -13,10 +13,11 @@
         "phantomdecor": "frame"
       },
       "minecraft:item_name": {
-        "text": "Невидимая рамка",
+        "text": "Невидимая светящаяся рамка",
         "color": "aqua",
         "italic": false
-      }
+      },
+      "minecraft:item_model": "phantomdecor:invisible_glow_frame"
     }
   }
 }

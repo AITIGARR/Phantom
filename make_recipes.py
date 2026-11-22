@@ -1,38 +1,22 @@
-#!/usr/bin/env python3
-"""Rebuild vanilla-compatible shapeless recipe JSON files for Phantom Decor."""
 import json
 from pathlib import Path
-
-out = Path(__file__).parent / 'src/main/resources/data/phantomdecor/recipe'
-out.mkdir(parents=True, exist_ok=True)
-woods = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak', 'mangrove',
-         'cherry', 'bamboo', 'crimson', 'warped', 'pale_oak')
-dyes = ('white', 'orange', 'magenta', 'light_blue', 'yellow', 'lime', 'pink', 'gray',
-        'light_gray', 'cyan', 'purple', 'blue', 'brown', 'green', 'red', 'black')
-
-def recipe(item, kind):
-    data = {
-        'type': 'minecraft:crafting_shapeless',
-        'category': 'misc',
-        'ingredients': ['minecraft:phantom_membrane', f'minecraft:{item}'],
-        'result': {
-            'id': f'minecraft:{item}',
-            'count': 1,
-            'components': {
-                'minecraft:custom_data': {'phantomdecor': kind},
-                'minecraft:item_name': {'text': {'frame': 'Невидимая рамка',
-                                                 'sign': 'Невидимая табличка',
-                                                 'banner': 'Голографический флаг'}[kind],
-                                        'color': 'aqua', 'italic': False}
-            }
-        }
+root = Path('src/main/resources/data/phantomdecor/recipe')
+root.mkdir(parents=True, exist_ok=True)
+woods = 'oak spruce birch jungle acacia dark_oak mangrove cherry bamboo crimson warped pale_oak'.split()
+colors = 'white orange magenta light_blue yellow lime pink gray light_gray cyan purple blue brown green red black'.split()
+items = [('item_frame','item_frame','frame','Невидимая рамка','invisible_frame'),('glow_item_frame','glow_item_frame','frame','Невидимая светящаяся рамка','invisible_glow_frame')]
+items += [(f'{w}_sign','pale_oak_sign','sign','Невидимая табличка','invisible_sign') for w in woods]
+items += [(f'{c}_banner',f'{c}_banner','banner','Фантомный флаг','phantom_banner') for c in colors]
+for ingredient, output, kind, name, model in items:
+    components = {
+        'minecraft:custom_data':{'phantomdecor':kind},
+        'minecraft:item_name':{'text':name,'color':'aqua','italic':False}
     }
-    (out / f'{item}.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-
-for wood in woods:
-    recipe(f'{wood}_sign', 'sign')
-for dye in dyes:
-    recipe(f'{dye}_banner', 'banner')
-for frame in ('item_frame', 'glow_item_frame'):
-    recipe(frame, 'frame')
-print('Recipes generated:', len(list(out.glob('*.json'))))
+    if kind != 'banner':
+        components['minecraft:item_model'] = f'phantomdecor:{model}'
+    recipe = {
+      'type':'minecraft:crafting_shapeless', 'category':'decorations',
+      'ingredients':['minecraft:phantom_membrane',f'minecraft:{ingredient}'],
+      'result':{'id':f'minecraft:{output}', 'count':1, 'components':components}
+    }
+    (root/f'{ingredient}.json').write_text(json.dumps(recipe,ensure_ascii=False,indent=2)+'\n')
