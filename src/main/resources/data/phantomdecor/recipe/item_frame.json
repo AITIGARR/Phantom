@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "category": "decorations",
   "ingredients": [
     "minecraft:phantom_membrane",
     "minecraft:item_frame"
@@ -16,7 +16,8 @@
         "text": "Невидимая рамка",
         "color": "aqua",
         "italic": false
-      }
+      },
+      "minecraft:item_model": "phantomdecor:invisible_frame"
     }
   }
 }

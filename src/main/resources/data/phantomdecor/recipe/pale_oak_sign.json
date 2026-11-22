@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "category": "decorations",
   "ingredients": [
     "minecraft:phantom_membrane",
     "minecraft:pale_oak_sign"
@@ -16,7 +16,8 @@
         "text": "Невидимая табличка",
         "color": "aqua",
         "italic": false
-      }
+      },
+      "minecraft:item_model": "phantomdecor:invisible_sign"
     }
   }
 }

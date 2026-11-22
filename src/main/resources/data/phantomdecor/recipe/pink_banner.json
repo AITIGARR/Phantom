@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "category": "decorations",
   "ingredients": [
     "minecraft:phantom_membrane",
     "minecraft:pink_banner"
@@ -13,7 +13,7 @@
         "phantomdecor": "banner"
       },
       "minecraft:item_name": {
-        "text": "Голографический флаг",
+        "text": "Фантомный флаг",
         "color": "aqua",
         "italic": false
       }
