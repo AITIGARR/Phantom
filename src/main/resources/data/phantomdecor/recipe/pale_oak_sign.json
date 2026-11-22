@@ -12,6 +12,7 @@
       "minecraft:custom_data": {
         "phantomdecor": "sign"
       },
+      "minecraft:item_model": "phantomdecor:invisible_sign",
       "minecraft:item_name": {
         "text": "Невидимая табличка",
         "color": "aqua",

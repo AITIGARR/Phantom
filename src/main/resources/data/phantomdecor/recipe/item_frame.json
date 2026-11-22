@@ -12,6 +12,7 @@
       "minecraft:custom_data": {
         "phantomdecor": "frame"
       },
+      "minecraft:item_model": "phantomdecor:invisible_frame",
       "minecraft:item_name": {
         "text": "Невидимая рамка",
         "color": "aqua",

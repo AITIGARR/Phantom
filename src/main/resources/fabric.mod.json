@@ -3,14 +3,17 @@
   "id": "phantomdecor",
   "version": "${version}",
   "name": "Phantom Decor",
-  "description": "Server-only phantom membrane decorations: invisible frames, floating sign text, holographic banners.",
-  "authors": ["JABACRAFT"],
+  "description": "Server-only invisibility decorations with real vanilla sign and banner blocks. Companion resource pack recommended.",
+  "authors": [
+    "JABACRAFT"
+  ],
   "license": "MIT",
   "environment": "server",
   "entrypoints": {
-    "main": ["dev.jabacraft.phantomdecor.PhantomDecorMod"]
+    "main": [
+      "dev.jabacraft.phantomdecor.PhantomDecorMod"
+    ]
   },
-  "mixins": ["phantomdecor.mixins.json"],
   "depends": {
     "fabricloader": ">=0.18.1",
     "minecraft": "1.21.11",

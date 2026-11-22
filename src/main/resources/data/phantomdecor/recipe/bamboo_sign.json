@@ -6,12 +6,13 @@
     "minecraft:bamboo_sign"
   ],
   "result": {
-    "id": "minecraft:bamboo_sign",
+    "id": "minecraft:pale_oak_sign",
     "count": 1,
     "components": {
       "minecraft:custom_data": {
         "phantomdecor": "sign"
       },
+      "minecraft:item_model": "phantomdecor:invisible_sign",
       "minecraft:item_name": {
         "text": "Невидимая табличка",
         "color": "aqua",

@@ -12,8 +12,9 @@
       "minecraft:custom_data": {
         "phantomdecor": "banner"
       },
+      "minecraft:item_model": "phantomdecor:invisible_banner",
       "minecraft:item_name": {
-        "text": "Голографический флаг",
+        "text": "Невидимый флаг",
         "color": "aqua",
         "italic": false
       }
